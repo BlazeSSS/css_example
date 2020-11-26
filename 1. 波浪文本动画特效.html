@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSS波浪文本动画特效</title>
+  <script>
+    const docStyle = document.documentElement.style
+    document.addEventListener('mousemove', e => {
+      docStyle.setProperty('--mouse-x', "\'" + e.clientX.toString() + "\'");
+      docStyle.setProperty('--mouse-y', "\'" + e.clientY.toString() + "\'");
+    })
+  </script>
+</head>
+<body>
+  <div class="wavy">
+    <span style="--i:1">内</span>
+    <span style="--i:2">容</span>
+    <span style="--i:3">加</span>
+    <span style="--i:4">载</span>
+    <span style="--i:5">中</span>
+    <span style="--i:6">.</span>
+    <span style="--i:7">.</span>
+    <span style="--i:8">.</span>
+  </div>
+</body>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑"
+}
+
+body {
+  display: flex;
+  /* 上下居中 */
+  align-items: center;
+  /* 左右居中 */
+  justify-content: center;
+  min-height: 100vh;
+  background: #000
+}
+
+.wavy {
+  position: relative;
+  /* 倒影 */
+  -webkit-box-reflect: below -7px linear-gradient(transparent, rgba(255, 255, 255, 1));
+}
+
+.wavy::after {
+ content: var(--mouse-x, 'x') ',' var(--mouse-y, 'y');
+ color: #fff;
+}
+
+.wavy span {
+  position: relative;
+  color: #fff;
+  font-size: 2em;
+  /* 动画 */
+  display: inline-block;
+  /* name | duration | timing-function | delay | iteration-count | direction | fill-mode | play-state */
+  animation: animate 2s ease-in-out calc(.1s*var(--i)) infinite normal none running;
+  /* animation-delay: calc(.1s*var(--i)); */
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0px);
+  }
+  20%{
+    transform: translateY(-27px);
+    /* font-size: 3em; */
+  }
+  40% {
+    transform: translateY(0px);
+  }
+  /* 60% {
+    transform: translateY(24px);
+  }
+  80% {
+    transform: translateY(0px);
+  } */
+}
+</style>
+</html>
+
+<!-- 动画事件监听 -->
+<!-- 
+var e = document.getElementById("watchme");
+e.addEventListener("animationstart", listener, false);
+e.addEventListener("animationend", listener, false);
+e.addEventListener("animationiteration", listener, false);
+
+e.className = "slidein"; 
+-->
