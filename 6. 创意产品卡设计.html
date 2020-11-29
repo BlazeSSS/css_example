@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="//at.alicdn.com/t/font_849071_nephwzbsea.css" rel="stylesheet">
+  <title>创意产品卡设计</title>
+</head>
+<body>
+  <div style="position: absolute; top: 0; left: 0; cursor: pointer;" onclick="window.open('http://localhost:5500', '_self')">
+    <svg style="width: 2em; height: 2em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024">
+      <path d="M986.681558 525.395078 593.370751 145.642055c-83.743286-91.241051-162.750711 0-162.750711 0L37.310256 511.830131c-29.843702 114.316605 81.372286 81.378425 81.372286 81.378425l325.502445-298.373575c75.656097-75.616188 135.622864 0 135.622864 0l339.066369 311.937498C1019.426333 627.00836 986.681558 525.395078 986.681558 525.395078zM566.242903 376.208291c0 0-60.786435-51.998281-108.49297 0L145.811412 661.024082l0 230.560096c0 0 13.849426 20.37198 40.685631 27.128871 12.636808-1.802042 230.565213 0 230.565213 0L417.062256 769.525238c0 0-1.947352-10.677177 13.557784-13.564947l162.750711 0c0 0 11.949146-8.768711 13.564947 13.564947l0 149.186787 217.001289 0c0 0 35.288714 4.278443 40.693818-27.128871L864.630804 661.024082 566.242903 376.208291z"></path>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div class="imgBx">
+        <img src="https://static.web.sdo.com/mxd/pic/mxd/web6/home/cooperation_icon.png" alt="">
+      </div>
+      <div class="contentBx">
+        <h2>品克缤（PinkBean）</h2>
+        <div class="size">
+          <h3>Size: </h3>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+        </div>
+        <div class="color">
+          <h3>Color: </h3>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <a href="https://mxd.web.sdo.com/web6/gameinfo/character.asp">职业介绍</a>
+      </div>
+    </div>
+  </div>
+</body>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e66767;
+  min-height: 100vh;
+}
+
+.container {
+  position: relative;
+}
+
+.container .card {
+  position: relative;
+  width: 320px;
+  height: 450px;
+  background: #ea8685;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.container .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8a5c2;
+  clip-path: circle(150px at 80% 20%);
+  transition: .5s ease-in-out;
+}
+
+.container .card:hover::before {
+ clip-path: circle(300px at 80% -20%);
+}
+
+.container .card .imgBx {
+  position: absolute;
+  top: 25%;
+  /* transform: translateY(-50%); */
+  z-index: 1000;
+  height: 220px;
+  width: 100%;
+  transition: .5s;
+  /*  */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.container .card:hover .imgBx {
+  top: 0%;
+  transform: translateY(0);
+  animation: animate 1s linear infinite;
+}
+
+.container .card .imgBx img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container .card .contentBx {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  transition: 1s;
+  z-index: 0;
+}
+
+.container .card:hover .contentBx {
+  height: 210px;
+}
+
+.container .card .contentBx h2 {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.container .card .contentBx .size,
+.container .card .contentBx .color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  transition: .5s;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+.container .card:hover .contentBx .size {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+
+.container .card:hover .contentBx .color {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.6s;
+}
+
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.container .card .contentBx .size span {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  display: inline-block;
+  color: #111;
+  background: #fff;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .size span:hover {
+  background: #f8a5c2;
+}
+
+.container .card .contentBx .color span {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .color span:nth-child(2) {
+  background: #9bdc28;
+}
+
+.container .card .contentBx .color span:nth-child(3) {
+  background: #03a9f4;
+}
+
+.container .card .contentBx .color span:nth-child(4) {
+  background: #e91e63;
+}
+
+.container .card .contentBx a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111;
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: .5s;
+}
+
+.container .card:hover .contentBx a {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.75s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+</style>
+</html>
