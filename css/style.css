@@ -9,9 +9,9 @@
 }
 
 .home.black {
-  background: url(svg/home_black.svg);
+  background: url(../svg/home_black.svg);
 }
 
 .home.white {
-  background: url(svg/home_white.svg);
+  background: url(../svg/home_white.svg);
 }
