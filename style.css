@@ -1,0 +1,17 @@
+.home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.home.black {
+  background: url(svg/home_black.svg);
+}
+
+.home.white {
+  background: url(svg/home_white.svg);
+}
