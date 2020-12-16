@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../css/style.css" rel="stylesheet">
+  <title>按钮悬停特效</title>
+</head>
+<body>
+  <div class="home white" onclick="window.open('http://localhost:5500', '_self')"></div>
+  <div class="container">
+    <a href="#">
+      <span>Button</span>
+      <span>Button</span>
+    </a>
+    <a href="#">
+      <span>Button</span>
+      <span>Button</span>
+    </a>
+  </div>
+</body>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "微软雅黑", sans-serif
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container a {
+  position: relative;
+  width: 150px;
+  height: 55px;
+  text-align: center;
+  line-height: 55px;
+  margin: 10px;
+  text-transform: uppercase;
+  background: #191919;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 2px;
+  overflow: hidden;
+}
+
+.container a span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  /* transition: .0s ease-in; */
+}
+
+.container a:nth-child(1) span {
+  bottom: 55px;
+}
+
+.container a:hover span {
+  transition: .4s ease-in;
+  transform: translateY(-100%);
+}
+
+.container a:hover:nth-child(1) span {
+  transform: translateY(100%);
+}
+
+.container a::before {
+  content: '';
+  position: absolute;
+  bottom: -250px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 250px;
+  background: #2299ff;
+  border-radius: 50%;
+  transition: 0.4s ease-in;
+}
+
+.container a:hover::before {
+  bottom: -150px;
+}
+
+.container a:nth-child(2)::before {
+  bottom: 60px;
+}
+
+.container a:nth-child(2):hover::before {
+  bottom: -40px;
+}
+</style>
+</html>
