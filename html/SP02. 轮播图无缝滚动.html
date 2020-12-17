@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../css/style.css" rel="stylesheet">
+  <title>轮播图无缝滚动</title>
+</head>
+<body>
+  <div class="home black" onclick="window.open('http://localhost:5500', '_self')"></div>
+  <div class="wrap">
+    <ul class="list">
+      <li class="item"><img src="../img/sp02/img1.png" alt="第一张图"></li>
+      <li class="item"><img src="../img/sp02/img2.png" alt="第二张图"></li>
+      <li class="item"><img src="../img/sp02/img3.png" alt="第三张图"></li>
+      <li class="item"><img src="../img/sp02/img1.png" alt="第一张图"></li>
+      <li class="item"><img src="../img/sp02/img2.png" alt="第二张图"></li>
+    </ul>
+    <ul class="dot">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+<script>
+  let wrap = document.querySelector('.wrap')
+  let list = wrap.querySelector('.list')
+  let dot = wrap.querySelectorAll('.dot li')
+
+  let startpoint = {}
+  let distance = {}
+  let startOffset = 0
+  let translatex = 0
+  let now = 0
+  let imgW = wrap.offsetWidth
+  let proportion = 0.3
+  let isMove = false
+
+  wrap.addEventListener('touchstart', e => {
+    let touch = e.changedTouches[0]
+    startpoint = {
+      x: touch.pageX,
+      y: touch.pageY
+    }
+
+    if (now == 0) {
+      now = dot.length
+    } else if (now == dot.length + 1) {
+      now = 1
+    }
+
+    translatex = now * -imgW
+    startOffset = translatex
+    list.style.transition = 'none'
+    list.style.transform = `translateX${translatex}px`
+  })
+
+  wrap.addEventListener('touchmove', e => {
+    let touch = e.changedTouches[0]
+    distance = {
+      x: touch.pageX - startpoint.x,
+      y: touch.pageY - startpoint.y
+    }
+
+    if (Math.abs(distance.x) - Math.abs(distance.y) > 5) {
+      isMove = true
+      e.preventDefault()
+    } else if (Math.abs(distance.x) - Math.abs(distance.y) < 5) {
+      isMove = false
+    }
+
+    if (isMove) {
+      translatex = startOffset + distance.x
+      list.style.transform = `translateX(${translatex}px)`
+    }
+  })
+
+  wrap.addEventListener('touchend', () => {
+    if (Math.abs(distance.x) > imgW * proportion) {
+      now -= distance.x/Math.abs(distance.x)
+    }
+
+    Array.from(dot).forEach((item, index) => {
+      item.classList.remove('active')
+      if (index === (now % dot.length)) {
+        item.classList.add('active')
+      }
+    })
+
+    if (isMove) {
+      translatex = now * -imgW
+      list.style.transition = '0.3s'
+      list.style.transform = `translateX(${translatex}px)`
+    }
+  })
+</script>
+<style>
+
+body {
+  margin: 0;
+  background: #fefefe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrap {
+  width: 100vw;
+  overflow: hidden;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: #000;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list {
+  display: flex;
+  float: left;
+}
+
+.list img {
+  width: 100vw;
+  vertical-align: top;
+  filter: saturate(2);
+}
+
+.dot {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+}
+
+.dot li {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #fff;
+  margin: 0 5px;
+  transition: 0.2s;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.dot li.active {
+  width: 20px;
+}
+</style>
+</html>
