@@ -34,7 +34,6 @@
   let startOffset = 0
   let translatex = 0
   let now = 0
-  let imgW = wrap.offsetWidth
   let proportion = 0.3
   let isMove = false
 
@@ -51,7 +50,7 @@
       now = 1
     }
 
-    translatex = now * -imgW
+    translatex = now * -wrap.offsetWidth
     startOffset = translatex
     list.style.transition = 'none'
     list.style.transform = `translateX${translatex}px`
@@ -78,9 +77,10 @@
   })
 
   wrap.addEventListener('touchend', () => {
-    if (Math.abs(distance.x) > imgW * proportion) {
+    if (Math.abs(distance.x) > wrap.offsetWidth * proportion) {
       now -= distance.x/Math.abs(distance.x)
     }
+    distance = {}
 
     Array.from(dot).forEach((item, index) => {
       item.classList.remove('active')
@@ -90,9 +90,25 @@
     })
 
     if (isMove) {
-      translatex = now * -imgW
+      translatex = now * -wrap.offsetWidth
       list.style.transition = '0.3s'
       list.style.transform = `translateX(${translatex}px)`
+    }
+    isMove = false
+  })
+
+  Array.from(dot).forEach((item, index, arr) => {
+    item.onclick = function(e) {
+      arr.forEach(ele => {
+        ele.classList.remove('active')
+      })
+
+      now = index
+      this.classList.add('active')
+      translatex = now * -wrap.offsetWidth
+      list.style.transition = '0.3s'
+      list.style.transform = `translateX(${translatex}px)`
+      e.preventDefault()
     }
   })
 </script>
@@ -129,7 +145,7 @@ ul {
 .list img {
   width: 100vw;
   vertical-align: top;
-  filter: saturate(2);
+  /* filter: saturate(2); */
 }
 
 .dot {
@@ -148,6 +164,7 @@ ul {
   margin: 0 5px;
   transition: 0.2s;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .dot li.active {
