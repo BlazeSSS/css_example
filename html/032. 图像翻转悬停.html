@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../css/style.css" rel="stylesheet">
+  <title>图像翻转悬停</title>
+</head>
+<body>
+  <div class="home black" onclick="window.open('http://localhost:5500', '_self')"></div>
+  <div class="card">
+    <div class="face front">
+      <h2>Front</h2>
+    </div>
+    <div class="face back">
+      <h2>Back</h2>
+    </div>
+  </div>
+</body>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑", sans-serif
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #111;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+}
+
+.card .face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 2s ease-in-out;
+  backface-visibility: hidden;
+}
+
+.card .face.front {
+  background: #ff0;
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.card:hover .face.front {
+  transform: perspective(500px) rotateY(180deg);
+}
+
+.card .face.back {
+  background: #3bc2ff;
+  color: #fff;
+  transform: perspective(500px) rotateY(180deg);
+}
+
+.card:hover .face.back {
+  transform: perspective(500px) rotateY(360deg);
+}
+
+.card .face h2 {
+  font-size: 3em;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: perspective(500px) translateZ(50px);
+}
+
+.card .face h2::before {
+  position: absolute;
+  color: grey;
+  transform: perspective(500px) translateZ(-50px) scale(1.2);
+}
+
+.card .face.front h2::before {
+  content: 'Front';
+}
+
+.card .face.back h2::before {
+  content: 'Back';
+}
+</style>
+</html>
